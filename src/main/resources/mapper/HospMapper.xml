@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alexli.cstraining.mapper.HospMapper">
+  <resultMap id="BaseResultMap" type="com.alexli.cstraining.model.Hosp">
+    <id column="hosp_id" jdbcType="INTEGER" property="hospId" />
+    <result column="hosp_name" jdbcType="VARCHAR" property="hospName" />
+    <result column="hosp_lv" jdbcType="VARCHAR" property="hospLv" />
+    <result column="hosp_clf" jdbcType="VARCHAR" property="hospClf" />
+    <result column="hosp_intro" jdbcType="VARCHAR" property="hospIntro" />
+    <result column="hosp_img" jdbcType="VARCHAR" property="hospImg" />
+    <result column="hosp_reg" jdbcType="VARCHAR" property="hospReg" />
+    <result column="hosp_delete" jdbcType="BIT" property="hospDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    hosp_id, hosp_name, hosp_lv, hosp_clf, hosp_intro, hosp_img, hosp_reg, hosp_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from hosp
+    where hosp_id = #{hospId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from hosp
+    where hosp_id = #{hospId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.alexli.cstraining.model.Hosp">
+    insert into hosp (hosp_id, hosp_name, hosp_lv, 
+      hosp_clf, hosp_intro, hosp_img, 
+      hosp_reg, hosp_delete)
+    values (#{hospId,jdbcType=INTEGER}, #{hospName,jdbcType=VARCHAR}, #{hospLv,jdbcType=VARCHAR}, 
+      #{hospClf,jdbcType=VARCHAR}, #{hospIntro,jdbcType=VARCHAR}, #{hospImg,jdbcType=VARCHAR}, 
+      #{hospReg,jdbcType=VARCHAR}, #{hospDelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alexli.cstraining.model.Hosp">
+    insert into hosp
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="hospId != null">
+        hosp_id,
+      </if>
+      <if test="hospName != null">
+        hosp_name,
+      </if>
+      <if test="hospLv != null">
+        hosp_lv,
+      </if>
+      <if test="hospClf != null">
+        hosp_clf,
+      </if>
+      <if test="hospIntro != null">
+        hosp_intro,
+      </if>
+      <if test="hospImg != null">
+        hosp_img,
+      </if>
+      <if test="hospReg != null">
+        hosp_reg,
+      </if>
+      <if test="hospDelete != null">
+        hosp_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="hospId != null">
+        #{hospId,jdbcType=INTEGER},
+      </if>
+      <if test="hospName != null">
+        #{hospName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospLv != null">
+        #{hospLv,jdbcType=VARCHAR},
+      </if>
+      <if test="hospClf != null">
+        #{hospClf,jdbcType=VARCHAR},
+      </if>
+      <if test="hospIntro != null">
+        #{hospIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="hospImg != null">
+        #{hospImg,jdbcType=VARCHAR},
+      </if>
+      <if test="hospReg != null">
+        #{hospReg,jdbcType=VARCHAR},
+      </if>
+      <if test="hospDelete != null">
+        #{hospDelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alexli.cstraining.model.Hosp">
+    update hosp
+    <set>
+      <if test="hospName != null">
+        hosp_name = #{hospName,jdbcType=VARCHAR},
+      </if>
+      <if test="hospLv != null">
+        hosp_lv = #{hospLv,jdbcType=VARCHAR},
+      </if>
+      <if test="hospClf != null">
+        hosp_clf = #{hospClf,jdbcType=VARCHAR},
+      </if>
+      <if test="hospIntro != null">
+        hosp_intro = #{hospIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="hospImg != null">
+        hosp_img = #{hospImg,jdbcType=VARCHAR},
+      </if>
+      <if test="hospReg != null">
+        hosp_reg = #{hospReg,jdbcType=VARCHAR},
+      </if>
+      <if test="hospDelete != null">
+        hosp_delete = #{hospDelete,jdbcType=BIT},
+      </if>
+    </set>
+    where hosp_id = #{hospId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alexli.cstraining.model.Hosp">
+    update hosp
+    set hosp_name = #{hospName,jdbcType=VARCHAR},
+      hosp_lv = #{hospLv,jdbcType=VARCHAR},
+      hosp_clf = #{hospClf,jdbcType=VARCHAR},
+      hosp_intro = #{hospIntro,jdbcType=VARCHAR},
+      hosp_img = #{hospImg,jdbcType=VARCHAR},
+      hosp_reg = #{hospReg,jdbcType=VARCHAR},
+      hosp_delete = #{hospDelete,jdbcType=BIT}
+    where hosp_id = #{hospId,jdbcType=INTEGER}
+  </update>
+</mapper>

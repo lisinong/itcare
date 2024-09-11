@@ -1,0 +1,26 @@
+server:
+  port: 8080
+
+logging:
+  level:
+    org.mybatis: debug
+    com.alexli.cstraining.mapper: debug
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/itcare?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.alexli.cstraining.model
+prop:
+  upload-folder: C:/Users/22662/Desktop/实训/cstraining/src/main/resources/static/

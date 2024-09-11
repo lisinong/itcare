@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alexli.cstraining.mapper.ApptOrderMapper">
+  <resultMap id="BaseResultMap" type="com.alexli.cstraining.model.ApptOrder">
+    <id column="ao_id" jdbcType="INTEGER" property="aoId" />
+    <result column="ao_serve" jdbcType="VARCHAR" property="aoServe" />
+    <result column="ao_hosp" jdbcType="VARCHAR" property="aoHosp" />
+    <result column="ao_tel" jdbcType="VARCHAR" property="aoTel" />
+    <result column="ao_user_id" jdbcType="INTEGER" property="aoUserId" />
+    <result column="ao_escort_id" jdbcType="INTEGER" property="aoEscortId" />
+    <result column="ao_addr" jdbcType="VARCHAR" property="aoAddr" />
+    <result column="ao_reqr" jdbcType="VARCHAR" property="aoReqr" />
+    <result column="ao_price" jdbcType="REAL" property="aoPrice" />
+    <result column="ao_delete" jdbcType="BIT" property="aoDelete" />
+    <result column="ao_time" jdbcType="TIMESTAMP" property="aoTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ao_id, ao_serve, ao_hosp, ao_tel, ao_user_id, ao_escort_id, ao_addr, ao_reqr, ao_price, 
+    ao_delete, ao_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from appt_order
+    where ao_id = #{aoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from appt_order
+    where ao_id = #{aoId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.alexli.cstraining.model.ApptOrder">
+    insert into appt_order (ao_id, ao_serve, ao_hosp, 
+      ao_tel, ao_user_id, ao_escort_id, 
+      ao_addr, ao_reqr, ao_price, 
+      ao_delete, ao_time)
+    values (#{aoId,jdbcType=INTEGER}, #{aoServe,jdbcType=VARCHAR}, #{aoHosp,jdbcType=VARCHAR}, 
+      #{aoTel,jdbcType=VARCHAR}, #{aoUserId,jdbcType=INTEGER}, #{aoEscortId,jdbcType=INTEGER}, 
+      #{aoAddr,jdbcType=VARCHAR}, #{aoReqr,jdbcType=VARCHAR}, #{aoPrice,jdbcType=REAL}, 
+      #{aoDelete,jdbcType=BIT}, #{aoTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alexli.cstraining.model.ApptOrder">
+    insert into appt_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="aoId != null">
+        ao_id,
+      </if>
+      <if test="aoServe != null">
+        ao_serve,
+      </if>
+      <if test="aoHosp != null">
+        ao_hosp,
+      </if>
+      <if test="aoTel != null">
+        ao_tel,
+      </if>
+      <if test="aoUserId != null">
+        ao_user_id,
+      </if>
+      <if test="aoEscortId != null">
+        ao_escort_id,
+      </if>
+      <if test="aoAddr != null">
+        ao_addr,
+      </if>
+      <if test="aoReqr != null">
+        ao_reqr,
+      </if>
+      <if test="aoPrice != null">
+        ao_price,
+      </if>
+      <if test="aoDelete != null">
+        ao_delete,
+      </if>
+      <if test="aoTime != null">
+        ao_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="aoId != null">
+        #{aoId,jdbcType=INTEGER},
+      </if>
+      <if test="aoServe != null">
+        #{aoServe,jdbcType=VARCHAR},
+      </if>
+      <if test="aoHosp != null">
+        #{aoHosp,jdbcType=VARCHAR},
+      </if>
+      <if test="aoTel != null">
+        #{aoTel,jdbcType=VARCHAR},
+      </if>
+      <if test="aoUserId != null">
+        #{aoUserId,jdbcType=INTEGER},
+      </if>
+      <if test="aoEscortId != null">
+        #{aoEscortId,jdbcType=INTEGER},
+      </if>
+      <if test="aoAddr != null">
+        #{aoAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="aoReqr != null">
+        #{aoReqr,jdbcType=VARCHAR},
+      </if>
+      <if test="aoPrice != null">
+        #{aoPrice,jdbcType=REAL},
+      </if>
+      <if test="aoDelete != null">
+        #{aoDelete,jdbcType=BIT},
+      </if>
+      <if test="aoTime != null">
+        #{aoTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alexli.cstraining.model.ApptOrder">
+    update appt_order
+    <set>
+      <if test="aoServe != null">
+        ao_serve = #{aoServe,jdbcType=VARCHAR},
+      </if>
+      <if test="aoHosp != null">
+        ao_hosp = #{aoHosp,jdbcType=VARCHAR},
+      </if>
+      <if test="aoTel != null">
+        ao_tel = #{aoTel,jdbcType=VARCHAR},
+      </if>
+      <if test="aoUserId != null">
+        ao_user_id = #{aoUserId,jdbcType=INTEGER},
+      </if>
+      <if test="aoEscortId != null">
+        ao_escort_id = #{aoEscortId,jdbcType=INTEGER},
+      </if>
+      <if test="aoAddr != null">
+        ao_addr = #{aoAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="aoReqr != null">
+        ao_reqr = #{aoReqr,jdbcType=VARCHAR},
+      </if>
+      <if test="aoPrice != null">
+        ao_price = #{aoPrice,jdbcType=REAL},
+      </if>
+      <if test="aoDelete != null">
+        ao_delete = #{aoDelete,jdbcType=BIT},
+      </if>
+      <if test="aoTime != null">
+        ao_time = #{aoTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ao_id = #{aoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alexli.cstraining.model.ApptOrder">
+    update appt_order
+    set ao_serve = #{aoServe,jdbcType=VARCHAR},
+      ao_hosp = #{aoHosp,jdbcType=VARCHAR},
+      ao_tel = #{aoTel,jdbcType=VARCHAR},
+      ao_user_id = #{aoUserId,jdbcType=INTEGER},
+      ao_escort_id = #{aoEscortId,jdbcType=INTEGER},
+      ao_addr = #{aoAddr,jdbcType=VARCHAR},
+      ao_reqr = #{aoReqr,jdbcType=VARCHAR},
+      ao_price = #{aoPrice,jdbcType=REAL},
+      ao_delete = #{aoDelete,jdbcType=BIT},
+      ao_time = #{aoTime,jdbcType=TIMESTAMP}
+    where ao_id = #{aoId,jdbcType=INTEGER}
+  </update>
+</mapper>

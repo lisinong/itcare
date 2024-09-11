@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alexli.cstraining.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.alexli.cstraining.model.User">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="user_pwd" jdbcType="VARCHAR" property="userPwd" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_img" jdbcType="VARCHAR" property="userImg" />
+    <result column="user_tel" jdbcType="VARCHAR" property="userTel" />
+    <result column="user_mail" jdbcType="VARCHAR" property="userMail" />
+    <result column="user_idn" jdbcType="VARCHAR" property="userIdn" />
+    <result column="user_wx" jdbcType="VARCHAR" property="userWx" />
+    <result column="user_qq" jdbcType="VARCHAR" property="userQq" />
+    <result column="user_time" jdbcType="TIMESTAMP" property="userTime" />
+    <result column="user_delete" jdbcType="VARCHAR" property="userDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_pwd, user_name, user_img, user_tel, user_mail, user_idn, user_wx, user_qq, 
+    user_time, user_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.alexli.cstraining.model.User" useGeneratedKeys="true">
+    insert into user (user_id, user_pwd, user_name, 
+      user_img, user_tel, user_mail, 
+      user_idn, user_wx, user_qq, 
+      user_time, user_delete, address, 
+      age, password, sex, 
+      username)
+    values (#{userId,jdbcType=INTEGER}, #{userPwd,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userImg,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR}, #{userMail,jdbcType=VARCHAR}, 
+      #{userIdn,jdbcType=VARCHAR}, #{userWx,jdbcType=VARCHAR}, #{userQq,jdbcType=VARCHAR}, 
+      #{userTime,jdbcType=TIMESTAMP}, #{userDelete,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{password,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.alexli.cstraining.model.User" useGeneratedKeys="true">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userPwd != null">
+        user_pwd,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userImg != null">
+        user_img,
+      </if>
+      <if test="userTel != null">
+        user_tel,
+      </if>
+      <if test="userMail != null">
+        user_mail,
+      </if>
+      <if test="userIdn != null">
+        user_idn,
+      </if>
+      <if test="userWx != null">
+        user_wx,
+      </if>
+      <if test="userQq != null">
+        user_qq,
+      </if>
+      <if test="userTime != null">
+        user_time,
+      </if>
+      <if test="userDelete != null">
+        user_delete,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userPwd != null">
+        #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null">
+        #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null">
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null">
+        #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdn != null">
+        #{userIdn,jdbcType=VARCHAR},
+      </if>
+      <if test="userWx != null">
+        #{userWx,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null">
+        #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userTime != null">
+        #{userTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userDelete != null">
+        #{userDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alexli.cstraining.model.User">
+    update user
+    <set>
+      <if test="userPwd != null">
+        user_pwd = #{userPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userImg != null">
+        user_img = #{userImg,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null">
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+      <if test="userMail != null">
+        user_mail = #{userMail,jdbcType=VARCHAR},
+      </if>
+      <if test="userIdn != null">
+        user_idn = #{userIdn,jdbcType=VARCHAR},
+      </if>
+      <if test="userWx != null">
+        user_wx = #{userWx,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null">
+        user_qq = #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userTime != null">
+        user_time = #{userTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userDelete != null">
+        user_delete = #{userDelete,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alexli.cstraining.model.User">
+    update user
+    set user_pwd = #{userPwd,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_img = #{userImg,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_mail = #{userMail,jdbcType=VARCHAR},
+      user_idn = #{userIdn,jdbcType=VARCHAR},
+      user_wx = #{userWx,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_time = #{userTime,jdbcType=TIMESTAMP},
+      user_delete = #{userDelete,jdbcType=VARCHAR},
+      id = #{id,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      password = #{password,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByuserIdAnduserPwd"  parameterType="map" resultMap="BaseResultMap">
+         SELECT * FROM user WHERE user_id = #{userId} AND user_pwd = #{userPwd}
+  </select>
+</mapper>

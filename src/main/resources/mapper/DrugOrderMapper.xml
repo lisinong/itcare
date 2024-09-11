@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alexli.cstraining.mapper.DrugOrderMapper">
+  <resultMap id="BaseResultMap" type="com.alexli.cstraining.model.DrugOrder">
+    <id column="do_id" jdbcType="INTEGER" property="doId" />
+    <result column="do_drug_id" jdbcType="INTEGER" property="doDrugId" />
+    <result column="do_qty" jdbcType="TINYINT" property="doQty" />
+    <result column="do_qp" jdbcType="REAL" property="doQp" />
+    <result column="do_tp" jdbcType="REAL" property="doTp" />
+    <result column="do_ao_id" jdbcType="INTEGER" property="doAoId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    do_id, do_drug_id, do_qty, do_qp, do_tp, do_ao_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from drug_order
+    where do_id = #{doId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from drug_order
+    where do_id = #{doId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.alexli.cstraining.model.DrugOrder">
+    insert into drug_order (do_id, do_drug_id, do_qty, 
+      do_qp, do_tp, do_ao_id)
+    values (#{doId,jdbcType=INTEGER}, #{doDrugId,jdbcType=INTEGER}, #{doQty,jdbcType=TINYINT}, 
+      #{doQp,jdbcType=REAL}, #{doTp,jdbcType=REAL}, #{doAoId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alexli.cstraining.model.DrugOrder">
+    insert into drug_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="doId != null">
+        do_id,
+      </if>
+      <if test="doDrugId != null">
+        do_drug_id,
+      </if>
+      <if test="doQty != null">
+        do_qty,
+      </if>
+      <if test="doQp != null">
+        do_qp,
+      </if>
+      <if test="doTp != null">
+        do_tp,
+      </if>
+      <if test="doAoId != null">
+        do_ao_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="doId != null">
+        #{doId,jdbcType=INTEGER},
+      </if>
+      <if test="doDrugId != null">
+        #{doDrugId,jdbcType=INTEGER},
+      </if>
+      <if test="doQty != null">
+        #{doQty,jdbcType=TINYINT},
+      </if>
+      <if test="doQp != null">
+        #{doQp,jdbcType=REAL},
+      </if>
+      <if test="doTp != null">
+        #{doTp,jdbcType=REAL},
+      </if>
+      <if test="doAoId != null">
+        #{doAoId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alexli.cstraining.model.DrugOrder">
+    update drug_order
+    <set>
+      <if test="doDrugId != null">
+        do_drug_id = #{doDrugId,jdbcType=INTEGER},
+      </if>
+      <if test="doQty != null">
+        do_qty = #{doQty,jdbcType=TINYINT},
+      </if>
+      <if test="doQp != null">
+        do_qp = #{doQp,jdbcType=REAL},
+      </if>
+      <if test="doTp != null">
+        do_tp = #{doTp,jdbcType=REAL},
+      </if>
+      <if test="doAoId != null">
+        do_ao_id = #{doAoId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where do_id = #{doId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alexli.cstraining.model.DrugOrder">
+    update drug_order
+    set do_drug_id = #{doDrugId,jdbcType=INTEGER},
+      do_qty = #{doQty,jdbcType=TINYINT},
+      do_qp = #{doQp,jdbcType=REAL},
+      do_tp = #{doTp,jdbcType=REAL},
+      do_ao_id = #{doAoId,jdbcType=INTEGER}
+    where do_id = #{doId,jdbcType=INTEGER}
+  </update>
+</mapper>

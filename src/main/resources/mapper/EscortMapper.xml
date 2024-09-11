@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.alexli.cstraining.mapper.EscortMapper">
+  <resultMap id="BaseResultMap" type="com.alexli.cstraining.model.Escort">
+    <id column="escort_id" jdbcType="INTEGER" property="escortId" />
+    <result column="escort_pwd" jdbcType="VARCHAR" property="escortPwd" />
+    <result column="escort_name" jdbcType="VARCHAR" property="escortName" />
+    <result column="escort_img" jdbcType="VARCHAR" property="escortImg" />
+    <result column="escort_tel" jdbcType="VARCHAR" property="escortTel" />
+    <result column="escort_mail" jdbcType="VARCHAR" property="escortMail" />
+    <result column="escort_idn" jdbcType="VARCHAR" property="escortIdn" />
+    <result column="escort_wx" jdbcType="VARCHAR" property="escortWx" />
+    <result column="escort_qq" jdbcType="VARCHAR" property="escortQq" />
+    <result column="escort_time" jdbcType="TIMESTAMP" property="escortTime" />
+    <result column="escort_lv" jdbcType="BIT" property="escortLv" />
+    <result column="escort_order" jdbcType="BIT" property="escortOrder" />
+    <result column="escort_delete" jdbcType="VARCHAR" property="escortDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    escort_id, escort_pwd, escort_name, escort_img, escort_tel, escort_mail, escort_idn, 
+    escort_wx, escort_qq, escort_time, escort_lv, escort_order, escort_delete
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from escort
+    where escort_id = #{escortId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from escort
+    where escort_id = #{escortId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.alexli.cstraining.model.Escort">
+    insert into escort (escort_id, escort_pwd, escort_name, 
+      escort_img, escort_tel, escort_mail, 
+      escort_idn, escort_wx, escort_qq, 
+      escort_time, escort_lv, escort_order, 
+      escort_delete)
+    values (#{escortId,jdbcType=INTEGER}, #{escortPwd,jdbcType=VARCHAR}, #{escortName,jdbcType=VARCHAR}, 
+      #{escortImg,jdbcType=VARCHAR}, #{escortTel,jdbcType=VARCHAR}, #{escortMail,jdbcType=VARCHAR}, 
+      #{escortIdn,jdbcType=VARCHAR}, #{escortWx,jdbcType=VARCHAR}, #{escortQq,jdbcType=VARCHAR}, 
+      #{escortTime,jdbcType=TIMESTAMP}, #{escortLv,jdbcType=BIT}, #{escortOrder,jdbcType=BIT}, 
+      #{escortDelete,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.alexli.cstraining.model.Escort">
+    insert into escort
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="escortId != null">
+        escort_id,
+      </if>
+      <if test="escortPwd != null">
+        escort_pwd,
+      </if>
+      <if test="escortName != null">
+        escort_name,
+      </if>
+      <if test="escortImg != null">
+        escort_img,
+      </if>
+      <if test="escortTel != null">
+        escort_tel,
+      </if>
+      <if test="escortMail != null">
+        escort_mail,
+      </if>
+      <if test="escortIdn != null">
+        escort_idn,
+      </if>
+      <if test="escortWx != null">
+        escort_wx,
+      </if>
+      <if test="escortQq != null">
+        escort_qq,
+      </if>
+      <if test="escortTime != null">
+        escort_time,
+      </if>
+      <if test="escortLv != null">
+        escort_lv,
+      </if>
+      <if test="escortOrder != null">
+        escort_order,
+      </if>
+      <if test="escortDelete != null">
+        escort_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="escortId != null">
+        #{escortId,jdbcType=INTEGER},
+      </if>
+      <if test="escortPwd != null">
+        #{escortPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName != null">
+        #{escortName,jdbcType=VARCHAR},
+      </if>
+      <if test="escortImg != null">
+        #{escortImg,jdbcType=VARCHAR},
+      </if>
+      <if test="escortTel != null">
+        #{escortTel,jdbcType=VARCHAR},
+      </if>
+      <if test="escortMail != null">
+        #{escortMail,jdbcType=VARCHAR},
+      </if>
+      <if test="escortIdn != null">
+        #{escortIdn,jdbcType=VARCHAR},
+      </if>
+      <if test="escortWx != null">
+        #{escortWx,jdbcType=VARCHAR},
+      </if>
+      <if test="escortQq != null">
+        #{escortQq,jdbcType=VARCHAR},
+      </if>
+      <if test="escortTime != null">
+        #{escortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="escortLv != null">
+        #{escortLv,jdbcType=BIT},
+      </if>
+      <if test="escortOrder != null">
+        #{escortOrder,jdbcType=BIT},
+      </if>
+      <if test="escortDelete != null">
+        #{escortDelete,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.alexli.cstraining.model.Escort">
+    update escort
+    <set>
+      <if test="escortPwd != null">
+        escort_pwd = #{escortPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="escortName != null">
+        escort_name = #{escortName,jdbcType=VARCHAR},
+      </if>
+      <if test="escortImg != null">
+        escort_img = #{escortImg,jdbcType=VARCHAR},
+      </if>
+      <if test="escortTel != null">
+        escort_tel = #{escortTel,jdbcType=VARCHAR},
+      </if>
+      <if test="escortMail != null">
+        escort_mail = #{escortMail,jdbcType=VARCHAR},
+      </if>
+      <if test="escortIdn != null">
+        escort_idn = #{escortIdn,jdbcType=VARCHAR},
+      </if>
+      <if test="escortWx != null">
+        escort_wx = #{escortWx,jdbcType=VARCHAR},
+      </if>
+      <if test="escortQq != null">
+        escort_qq = #{escortQq,jdbcType=VARCHAR},
+      </if>
+      <if test="escortTime != null">
+        escort_time = #{escortTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="escortLv != null">
+        escort_lv = #{escortLv,jdbcType=BIT},
+      </if>
+      <if test="escortOrder != null">
+        escort_order = #{escortOrder,jdbcType=BIT},
+      </if>
+      <if test="escortDelete != null">
+        escort_delete = #{escortDelete,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where escort_id = #{escortId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.alexli.cstraining.model.Escort">
+    update escort
+    set escort_pwd = #{escortPwd,jdbcType=VARCHAR},
+      escort_name = #{escortName,jdbcType=VARCHAR},
+      escort_img = #{escortImg,jdbcType=VARCHAR},
+      escort_tel = #{escortTel,jdbcType=VARCHAR},
+      escort_mail = #{escortMail,jdbcType=VARCHAR},
+      escort_idn = #{escortIdn,jdbcType=VARCHAR},
+      escort_wx = #{escortWx,jdbcType=VARCHAR},
+      escort_qq = #{escortQq,jdbcType=VARCHAR},
+      escort_time = #{escortTime,jdbcType=TIMESTAMP},
+      escort_lv = #{escortLv,jdbcType=BIT},
+      escort_order = #{escortOrder,jdbcType=BIT},
+      escort_delete = #{escortDelete,jdbcType=VARCHAR}
+    where escort_id = #{escortId,jdbcType=INTEGER}
+  </update>
+</mapper>
